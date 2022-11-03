@@ -12,7 +12,7 @@ namespace EscolaProverMenuCRUD.Classes
         public string nome { get; set; }
         public string telefone { get; set; }
         public string cpf { get; set; }
-        public string codigo { get; set; }
+        public int codigo { get; set; }
         public string materia { get; set; }
         public string turma { get; set; }
         public ArrayList estudantes { get; set; }
