@@ -486,9 +486,11 @@ namespace EscolaProverMenuCRUD
                 string excluir = Console.ReadLine();
                 if (excluir == "s")
                 {
+                    alunos.Clear();
                     File.Delete(Ficheiro);
-                    Console.WriteLine("Todos os dados foram excluídos, reinicie a aplicação para atualizar os dados. Aperte enter para continuar.");
+                    Console.WriteLine("Todos os dados foram excluídos. Aperte enter para continuar.");
                     Console.ReadLine();
+                    
                 }
                 else if (excluir == "n")
                 {
