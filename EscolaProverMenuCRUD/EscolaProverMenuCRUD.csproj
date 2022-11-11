@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Caelum.Stella.CSharp" Version="1.4.7" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
 </Project>
