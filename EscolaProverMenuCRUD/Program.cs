@@ -16,25 +16,25 @@ partial class Program
     static ArrayList turmas = new ArrayList();
     static void Main(string[] args)
     {
-        try
-        {
-            SqlConnection sqlConnection;
-            string connectionString = @"Data Source=DESKTOP-4N1BV2V\SQLSERVER;Initial Catalog=EscolaProverDados;Integrated Security=True";
+        //try
+        //{
+        //    SqlConnection sqlConnection;
+        //    string connectionString = @"Data Source=DESKTOP-4N1BV2V\SQLSERVER;Initial Catalog=EscolaProverDados;Integrated Security=True";
 
-            sqlConnection = new SqlConnection(connectionString);
-            sqlConnection.Open();
-            Console.WriteLine("Conexão Criada.");
-            Console.ReadKey();
-            string insertQuery = "insert into dbo.Alunos (Nome, CPF, Celular) VALUES ('Teste', '32165498701', '21918372748';";
-            SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection);
-            insertCommand.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Conexão Falhou.");
-            Console.WriteLine(ex.Message);
-            Console.ReadKey();
-        }
+        //    sqlConnection = new SqlConnection(connectionString);
+        //    sqlConnection.Open();
+        //    Console.WriteLine("Conexão Criada.");
+        //    Console.ReadKey();
+        //    string insertQuery = "insert into dbo.Alunos (Nome, CPF, Celular) VALUES ('Teste', '32165498701', '21918372748';";
+        //    SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection);
+        //    insertCommand.ExecuteNonQuery();
+        //}
+        //catch (Exception ex)
+        //{
+        //    Console.WriteLine("Conexão Falhou.");
+        //    Console.WriteLine(ex.Message);
+        //    Console.ReadKey();
+        //}
         CarregarArquivosAlunos();
         Escolher();
     }
