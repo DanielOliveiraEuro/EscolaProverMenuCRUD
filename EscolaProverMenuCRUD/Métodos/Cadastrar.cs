@@ -160,8 +160,28 @@ namespace EscolaProverMenuCRUD
                         }
                     }
                 }
+                try
+                {
+                    SqlConnection sqlConnection;
+                    string connectionString = @"Data Source=DESKTOP-4N1BV2V\SQLSERVER;Initial Catalog=EscolaProverDados;Integrated Security=True";
+
+                    sqlConnection = new SqlConnection(connectionString);
+                    sqlConnection.Open();
+                    //Console.WriteLine("Conexão Criada.");
+                    //Console.ReadKey();
+                    string insertQuery = $"insert into dbo.Alunos (Nome, CPF, Celular) VALUES ('{aluno1.nome}', '{aluno1.cpf}', '{aluno1.telefone}')";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection);
+                    insertCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Conexão Falhou.");
+                    Console.WriteLine(ex.Message);
+                    Console.ReadKey();
+                }
                 if (!encontrado)
                 {
+
                     string linha = aluno1.nome + "|";
                     for (int i = 0; i < 1; i++)
                     {

@@ -4,6 +4,7 @@ using EscolaProverMenuCRUD.Validacao;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -248,6 +249,24 @@ namespace EscolaProverMenuCRUD
                                     Escolher();
                                 }
                             }
+                            try
+                            {
+                                SqlConnection sqlConnection;
+                                string connectionString = @"Data Source=DESKTOP-4N1BV2V\SQLSERVER;Initial Catalog=EscolaProverDados;Integrated Security=True";
+
+                                sqlConnection = new SqlConnection(connectionString);
+                                sqlConnection.Open();
+                                string updateQuery = $"update dbo.Alunos set Nome = '{aluno1.nome}', CPF = '{aluno1.cpf}', Celular = '{aluno1.telefone}' WHERE Nome = '{aluno.nome}'";
+                                SqlCommand updateCommand = new SqlCommand(updateQuery, sqlConnection);
+                                updateCommand.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Operação Falhou.");
+                                Console.WriteLine(ex.Message);
+                                Console.ReadKey();
+                            }
+
                             linha = aluno1.nome + "|";
                             Random random = new Random();
                             aluno1.codigo = random.Next(1, 500);
@@ -374,6 +393,24 @@ namespace EscolaProverMenuCRUD
                         Console.WriteLine("|\n| Deseja remover o aluno {0}? s p/ sim e n p/ não", aluno.nome);
                         if (Console.ReadLine().ToLower() == "s")
                         {
+                            
+                            try
+                            {
+                                SqlConnection sqlConnection;
+                                string connectionString = @"Data Source=DESKTOP-4N1BV2V\SQLSERVER;Initial Catalog=EscolaProverDados;Integrated Security=True";
+
+                                sqlConnection = new SqlConnection(connectionString);
+                                sqlConnection.Open();
+                                string deleteQuery = $"delete from dbo.Alunos where Nome = '{aluno.nome}'";
+                                SqlCommand deleteCommand = new SqlCommand(deleteQuery, sqlConnection);
+                                deleteCommand.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Operação Falhou.");
+                                Console.WriteLine(ex.Message);
+                                Console.ReadKey();
+                            }
                             alunos.Remove(aluno);
                             break;
                         }
