@@ -27,10 +27,8 @@ namespace EscolaProverMenuCRUD
                 {
                     Console.WriteLine("|\tAluno          {0}         ", aluno1.nome);
                     Console.WriteLine("|\tCPF            {0}          ", Convert.ToUInt64(aluno1.cpf).ToString(@"000\.000\.000\-00"));
-                    //Console.WriteLine("|\tMatéria        {0}         ", aluno1.materia);
                     Console.WriteLine("|\tTelefone       {0}         ", Convert.ToUInt64(aluno1.telefone).ToString(@"(00)00000-0000"));
                     Console.WriteLine("|\tCódigo         {0}         ", aluno1.codigo);
-                    //Console.WriteLine("|\tTurma          {0}         ", aluno1.turma);
                 }
                 Console.WriteLine("                                                      ");
                 Console.WriteLine("|----------------------------------------------------|");

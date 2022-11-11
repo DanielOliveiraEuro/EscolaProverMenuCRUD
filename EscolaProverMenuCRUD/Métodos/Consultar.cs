@@ -38,7 +38,7 @@ namespace EscolaProverMenuCRUD
             }
             foreach (Aluno aluno in alunos)
             {
-                if (/*aluno.nome.ToLower().Contains(nome.ToLower()) || */aluno.codigo == int.Parse(nome))
+                if (aluno.codigo == int.Parse(nome))
                 {
                     
                     encontrado = true;
@@ -52,17 +52,13 @@ namespace EscolaProverMenuCRUD
                     Console.WriteLine("|----------------------------------------------------|\n");
                     Console.WriteLine("  {0} foi encontrado no banco de dados.\n", aluno.nome);
                     Console.WriteLine("|----------------------------------------------------|");
-                    //Console.WriteLine("|\tAlunos      Matéria\t      CPF\t|");
-                    //Console.WriteLine("|----------------------------------------------------|");
-
+                    
                     foreach (Aluno aluno1 in aluno.estudantes)
                     {
                         Console.WriteLine("|\tAluno          {0}         ", aluno1.nome);
                         Console.WriteLine("|\tCPF            {0}          ", Convert.ToUInt64(aluno1.cpf).ToString(@"000\.000\.000\-00"));
-                        //Console.WriteLine("|\tMatéria        {0}         ", aluno1.materia);
                         Console.WriteLine("|\tTelefone       {0}         ", Convert.ToUInt64(aluno1.telefone).ToString(@"(00)00000-0000"));
                         Console.WriteLine("|\tCódigo         {0}         ", aluno1.codigo);
-                        //Console.WriteLine("|\tTurma          {0}         ", aluno1.turma);
                     }
                     Console.WriteLine(" ---------------------------------------------------- ");
                     Console.WriteLine(" \n \n  Escolha a opção:");
@@ -152,7 +148,7 @@ namespace EscolaProverMenuCRUD
 
                 Console.WriteLine("|\n| {0} não existe no banco de dados.", nome);
                 Console.WriteLine("|\n|\n|\n| Escolha a opção:");
-                Console.WriteLine("|\n| 1-Voltar p/Consultar \n| 2-Ir ao Menu incial");
+                Console.WriteLine("|\n| 1   -Voltar p/Consultar \n| 2-Ir ao Menu incial");
                 Console.WriteLine("|");
                 Console.Write("| Insira a Opção:");
                 string opcao = Console.ReadLine();
