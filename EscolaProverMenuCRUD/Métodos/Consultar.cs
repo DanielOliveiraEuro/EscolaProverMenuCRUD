@@ -1,6 +1,7 @@
 ﻿using EscolaProverMenuCRUD.Classes;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,9 +53,10 @@ namespace EscolaProverMenuCRUD
                     Console.WriteLine("|----------------------------------------------------|\n");
                     Console.WriteLine("  {0} foi encontrado no banco de dados.\n", aluno.nome);
                     Console.WriteLine("|----------------------------------------------------|");
-                    
+
                     foreach (Aluno aluno1 in aluno.estudantes)
                     {
+
                         Console.WriteLine("|\tAluno          {0}         ", aluno1.nome);
                         Console.WriteLine("|\tCPF            {0}          ", Convert.ToUInt64(aluno1.cpf).ToString(@"000\.000\.000\-00"));
                         Console.WriteLine("|\tTelefone       {0}         ", Convert.ToUInt64(aluno1.telefone).ToString(@"(00)00000-0000"));

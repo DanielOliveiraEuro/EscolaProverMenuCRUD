@@ -160,25 +160,7 @@ namespace EscolaProverMenuCRUD
                         }
                     }
                 }
-                try
-                {
-                    SqlConnection sqlConnection;
-                    string connectionString = @"Data Source=DESKTOP-4N1BV2V\SQLSERVER;Initial Catalog=EscolaProverDados;Integrated Security=True";
-
-                    sqlConnection = new SqlConnection(connectionString);
-                    sqlConnection.Open();
-                    //Console.WriteLine("Conexão Criada.");
-                    //Console.ReadKey();
-                    string insertQuery = $"insert into dbo.Alunos (Nome, CPF, Celular) VALUES ('{aluno1.nome}', '{aluno1.cpf}', '{aluno1.telefone}')";
-                    SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection);
-                    insertCommand.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Conexão Falhou.");
-                    Console.WriteLine(ex.Message);
-                    Console.ReadKey();
-                }
+                
                 if (!encontrado)
                 {
 
@@ -187,6 +169,25 @@ namespace EscolaProverMenuCRUD
                     {
                         Random random = new Random();
                         aluno1.codigo = random.Next(1, 500);
+                        try
+                        {
+                            SqlConnection sqlConnection;
+                            string connectionString = @"Data Source=DESKTOP-BRDOPT0;Initial Catalog=EscolaProver;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+                            sqlConnection = new SqlConnection(connectionString);
+                            sqlConnection.Open();
+                            //Console.WriteLine("Conexão Criada.");
+                            //Console.ReadKey();
+                            string insertQuery = $"insert into dbo.Alunos (Nome, CPF, Celular) VALUES ('{aluno1.nome}', '{aluno1.cpf}', '{aluno1.telefone}')";
+                            SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection);
+                            insertCommand.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Conexão Falhou.");
+                            Console.WriteLine(ex.Message);
+                            Console.ReadKey();
+                        }
                         linha += aluno1.nome + "|" + aluno1.cpf + "|" + aluno1.telefone + "|" + aluno1.codigo + "|";
                         aluno1.estudantes.Add(aluno1);
                     }

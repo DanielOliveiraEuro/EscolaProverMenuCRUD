@@ -252,7 +252,7 @@ namespace EscolaProverMenuCRUD
                             try
                             {
                                 SqlConnection sqlConnection;
-                                string connectionString = @"Data Source=DESKTOP-4N1BV2V\SQLSERVER;Initial Catalog=EscolaProverDados;Integrated Security=True";
+                                string connectionString = @"Data Source=DESKTOP-BRDOPT0;Initial Catalog=EscolaProver;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
                                 sqlConnection = new SqlConnection(connectionString);
                                 sqlConnection.Open();
@@ -397,7 +397,7 @@ namespace EscolaProverMenuCRUD
                             try
                             {
                                 SqlConnection sqlConnection;
-                                string connectionString = @"Data Source=DESKTOP-4N1BV2V\SQLSERVER;Initial Catalog=EscolaProverDados;Integrated Security=True";
+                                string connectionString = @"Data Source=DESKTOP-BRDOPT0;Initial Catalog=EscolaProver;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
                                 sqlConnection = new SqlConnection(connectionString);
                                 sqlConnection.Open();

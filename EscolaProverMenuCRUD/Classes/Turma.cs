@@ -10,7 +10,6 @@ namespace EscolaProverMenuCRUD.Classes
     public class Turma : Materia
     {
         public string TurmaNome { get; set; }
-        public string TurmaNumero { get; set; }
         public ArrayList turmas { get; set; }
         public Turma()
         {

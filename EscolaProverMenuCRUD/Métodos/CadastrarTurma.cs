@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace EscolaProverMenuCRUD
 {
@@ -40,56 +41,56 @@ namespace EscolaProverMenuCRUD
                 {
                     Console.WriteLine("Não permitido caracteres especiais. Aperte enter para tentar novamente.");
                 }
-                try
-                {
-                    int valor = int.Parse(turma1.TurmaNome);
-                    if (turma1.TurmaNome == "0")
-                    {
-                        Escolher();
-                    }
-                    if (valor is int)
-                    {
-                        Console.WriteLine("O valor deve ser textual, digite enter para continuar.");
-                        Console.ReadLine();
-                        InserirTurma();
-                    }
-                }
-                catch (FormatException ex)
-                {
-                    if (turma1.TurmaNome.Equals(turma1.TurmaNome.ToLower()))
-                    {
-                        Console.WriteLine("Não permitido caracteres especiais.Aperte enter para tentar novamente.");
-                        Console.ReadLine();
-                        InserirTurma();
-                        throw new Exception(ex.Message);
-                    }
+                //try
+                //{
+                //    int valor = int.Parse(turma1.TurmaNome);
+                //    if (turma1.TurmaNome == "0")
+                //    {
+                //        Escolher();
+                //    }
+                //    if (valor is int)
+                //    {
+                //        Console.WriteLine("O valor deve ser textual, digite enter para continuar.");
+                //        Console.ReadLine();
+                //        InserirTurma();
+                //    }
+                //}
+                //catch (FormatException ex)
+                //{
+                //    if (turma1.TurmaNome.Equals(turma1.TurmaNome.ToLower()))
+                //    {
+                //        Console.WriteLine("Não permitido caracteres especiais.Aperte enter para tentar novamente.");
+                //        Console.ReadLine();
+                //        InserirTurma();
+                //        throw new Exception(ex.Message);
+                //    }
 
-                }
-                if (turma1.TurmaNome == "" || turma1.TurmaNumero == "")
+                //}
+                if (turma1.TurmaNome == ""/* || turma1.TurmaNumero == ""*/)
                 {
                     Console.WriteLine("O nome não pode ser nulo, digite enter para continuar.");
                     Console.ReadLine();
                     InserirTurma();
                 }
-                Console.Write("|\n| Número da turma(apenas números): \t");
-                turma1.TurmaNumero = Console.ReadLine();
-                long n;
-                var isNumerico = long.TryParse(turma1.TurmaNumero, out n);
-                if (turma1.TurmaNumero == "0")
-                {
-                    Escolher();
-                }
-                while (isNumerico == false || turma1.TurmaNumero.Length <= 3)
-                {
-                    Console.WriteLine("|\n| Turma deve ter 3 números. Aperte enter para continuar. \t");
-                    Console.Write("|\n| Número da turma(apenas números): \t");
-                    turma1.TurmaNumero = Console.ReadLine();
-                    isNumerico = long.TryParse(turma1.TurmaNumero, out n);
-                    if (turma1.TurmaNumero == "0")
-                    {
-                        Escolher();
-                    }
-                }
+                //Console.Write("|\n| Número da turma(apenas números): \t");
+                //turma1.TurmaNumero = Console.ReadLine();
+                //long n;
+                //var isNumerico = long.TryParse(turma1.TurmaNumero, out n);
+                //if (turma1.TurmaNumero == "0")
+                //{
+                //    Escolher();
+                //}
+                //while (isNumerico == false || turma1.TurmaNumero.Length <= 3)
+                //{
+                //    Console.WriteLine("|\n| Turma deve ter 3 números. Aperte enter para continuar. \t");
+                //    Console.Write("|\n| Número da turma(apenas números): \t");
+                //    turma1.TurmaNumero = Console.ReadLine();
+                //    isNumerico = long.TryParse(turma1.TurmaNumero, out n);
+                //    if (turma1.TurmaNumero == "0")
+                //    {
+                //        Escolher();
+                //    }
+                //}
                 foreach (Turma turma in turmas)
                 {
                     if (turma.TurmaNome.ToLower().Contains(turma1.TurmaNome.ToLower()))
@@ -124,23 +125,42 @@ namespace EscolaProverMenuCRUD
                 }
                 if (!encontrado)
                 {
-                    string linha = turma1.TurmaNome + "|";
-                    for (int i = 0; i < 1; i++)
+                    //string linha = turma1.TurmaNome + "|";
+                    //for (int i = 0; i < 1; i++)
+                    //{
+                    //    linha += turma1.TurmaNome + "|";
+                    //    turma1.turmas.Add(turma1);
+                    //}
+                    //turmas.Add(turma1);
+                    //if (File.Exists(Ficheiro))
+                    //{
+                    //    file = File.AppendText(Ficheiro);
+                    //}
+                    //else
+                    //{
+                    //    file = File.CreateText(Ficheiro);
+                    //}
+                    //file.WriteLine(linha);
+                    try
                     {
-                        linha += turma1.TurmaNome + "|" + turma1.TurmaNumero + "|";
-                        turma1.turmas.Add(turma1);
+                        SqlConnection sqlConnection;
+                        string connectionString = @"Data Source=DESKTOP-BRDOPT0;Initial Catalog=EscolaProver;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+                        sqlConnection = new SqlConnection(connectionString);
+                        sqlConnection.Open();
+                        //Console.WriteLine("Conexão Criada.");
+                        //Console.ReadKey();
+                        string insertQuery = $"CREATE TABLE Turma{turma1.TurmaNome}(AlunoId int Foreign Key REFERENCES Alunos(AlunoId))";
+                        SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection);
+                        insertCommand.ExecuteNonQuery();
                     }
-                    turmas.Add(turma1);
-                    if (File.Exists(Ficheiro))
+                    catch (Exception ex)
                     {
-                        file = File.AppendText(Ficheiro);
+                        Console.WriteLine("Conexão Falhou.");
+                        Console.WriteLine(ex.Message);
+                        Console.ReadKey();
                     }
-                    else
-                    {
-                        file = File.CreateText(Ficheiro);
-                    }
-                    file.WriteLine(linha);
-                    file.Close();
+                    //file.Close();
                     Console.WriteLine("|\n| Deseja continuar inserindo turmas? s p/ sim e n p/ não: \t");
                 }
             }
