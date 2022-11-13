@@ -20,19 +20,19 @@ namespace EscolaProverMenuCRUD
             Console.WriteLine("|----------------------------------------------------|");
 
             Console.WriteLine("|----------------------------------------------------|");
-
-            foreach (Aluno aluno in alunos)
-            {
-                foreach (Aluno aluno1 in aluno.estudantes)
-                {
-                    Console.WriteLine("|\tAluno          {0}         ", aluno1.nome);
-                    Console.WriteLine("|\tCPF            {0}          ", Convert.ToUInt64(aluno1.cpf).ToString(@"000\.000\.000\-00"));
-                    Console.WriteLine("|\tTelefone       {0}         ", Convert.ToUInt64(aluno1.telefone).ToString(@"(00)00000-0000"));
-                    Console.WriteLine("|\tCódigo         {0}         ", aluno1.codigo);
-                }
-                Console.WriteLine("                                                      ");
-                Console.WriteLine("|----------------------------------------------------|");
-            }
+            Console.WriteLine(CarregarArquivosAlunos);
+            //foreach (Aluno aluno in alunos)
+            //{
+            //    foreach (Aluno aluno1 in aluno.estudantes)
+            //    {
+            //        Console.WriteLine("|\tAluno          {0}         ", aluno1.nome);
+            //        Console.WriteLine("|\tCPF            {0}          ", Convert.ToUInt64(aluno1.cpf).ToString(@"000\.000\.000\-00"));
+            //        Console.WriteLine("|\tTelefone       {0}         ", Convert.ToUInt64(aluno1.telefone).ToString(@"(00)00000-0000"));
+            //        Console.WriteLine("|\tCódigo         {0}         ", aluno1.codigo);
+            //    }
+            //    Console.WriteLine("                                                      ");
+            //    Console.WriteLine("|----------------------------------------------------|");
+            //}
             Console.WriteLine("|                                                    |");
             Console.WriteLine("| Aperte qualquer tecla para voltar ao menu inicial. |");
             Console.WriteLine("|----------------------------------------------------|");

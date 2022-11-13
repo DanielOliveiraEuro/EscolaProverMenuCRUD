@@ -192,16 +192,16 @@ namespace EscolaProverMenuCRUD
                         aluno1.estudantes.Add(aluno1);
                     }
                     alunos.Add(aluno1);
-                    if (File.Exists(Ficheiro))
-                    {
-                        file = File.AppendText(Ficheiro);
-                    }
-                    else
-                    {
-                        file = File.CreateText(Ficheiro);
-                    }
-                    file.WriteLine(linha);
-                    file.Close();
+                    //if (File.Exists(Ficheiro))
+                    //{
+                    //    file = File.AppendText(Ficheiro);
+                    //}
+                    //else
+                    //{
+                    //    file = File.CreateText(Ficheiro);
+                    //}
+                    //file.WriteLine(linha);
+                    //file.Close();
                     Console.WriteLine("|\n| Deseja continuar inserindo alunos? s p/ sim e n p/ não: \t");
                 }
             }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace EscolaProverMenuCRUD
 {
@@ -71,6 +72,26 @@ namespace EscolaProverMenuCRUD
                     Console.ReadLine();
                     InserirMateria();
                 }
+                try
+                {
+                    SqlConnection sqlConnection;
+                    string connectionString = @"Data Source=DESKTOP-BRDOPT0;Initial Catalog=EscolaProver;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+                    sqlConnection = new SqlConnection(connectionString);
+                    sqlConnection.Open();
+                    //Console.WriteLine("Conexão Criada.");
+                    //Console.ReadKey();
+                    string insertQuery = $"insert into dbo.Materias (MateriaNome) VALUES ('{materia1.MateriaNome}')";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, sqlConnection);
+                    insertCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Conexão Falhou.");
+                    Console.WriteLine(ex.Message);
+                    Console.ReadKey();
+                }
+                Console.WriteLine("Matéria inserida, deseja inserir mais matérias? s p/ sim e n p/ não");
                 //foreach (Materia materia in materias)
                 //{
                 //    if (materia1.MateriaNome.ToLower().Contains(materia1.MateriaNome.ToLower()))

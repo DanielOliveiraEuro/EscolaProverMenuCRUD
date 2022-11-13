@@ -125,22 +125,22 @@ namespace EscolaProverMenuCRUD
                 }
                 if (!encontrado)
                 {
-                    //string linha = turma1.TurmaNome + "|";
-                    //for (int i = 0; i < 1; i++)
-                    //{
-                    //    linha += turma1.TurmaNome + "|";
-                    //    turma1.turmas.Add(turma1);
-                    //}
-                    //turmas.Add(turma1);
-                    //if (File.Exists(Ficheiro))
-                    //{
-                    //    file = File.AppendText(Ficheiro);
-                    //}
-                    //else
-                    //{
-                    //    file = File.CreateText(Ficheiro);
-                    //}
-                    //file.WriteLine(linha);
+                    string linha = turma1.TurmaNome + "|";
+                    for (int i = 0; i < 1; i++)
+                    {
+                        linha += turma1.TurmaNome + "|";
+                        turma1.turmas.Add(turma1);
+                    }
+                    turmas.Add(turma1);
+                    if (File.Exists(Ficheiro))
+                    {
+                        file = File.AppendText(Ficheiro);
+                    }
+                    else
+                    {
+                        file = File.CreateText(Ficheiro);
+                    }
+                    file.WriteLine(linha);
                     try
                     {
                         SqlConnection sqlConnection;

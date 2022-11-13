@@ -40,27 +40,57 @@ partial class Program
     }
     static void CarregarArquivosAlunos()
     {
-        if (File.Exists(Ficheiro))
+
+        try
         {
-            string[] linhas = File.ReadAllLines(Ficheiro);
-            foreach (string linha in linhas)
+            SqlConnection sqlConnection;
+            string connectionString = @"Data Source=DESKTOP-BRDOPT0;Initial Catalog=EscolaProver;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+            sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();
+            //Console.WriteLine("Conexão Criada.");
+            //Console.ReadKey();
+            string selectQuery = $"select AlunoId, Nome, CPF, Celular from dbo.Alunos";
+            SqlCommand selectCommand = new SqlCommand(selectQuery, sqlConnection);
+            SqlDataReader reader = selectCommand.ExecuteReader();
+            List<string> str = new List<string>();
+            int i = 0;
+            while (reader.Read())
             {
-                string[] partes = linha.Split('|');
-                Aluno aluno = new Aluno();
-                aluno.nome = partes[0];
-                int c = 0;
-                for (int i = 0; i < 1; i++)
-                {
-                    aluno.nome = partes[i + 1 + c];
-                    aluno.cpf = partes[i + 2 + c];
-                    aluno.telefone = partes[i + 3 + c];
-                    aluno.codigo = int.Parse(partes[i + 4 + c]);
-                    aluno.estudantes.Add(aluno);
-                    c++;
-                }
-                alunos.Add(aluno);
+                str.Add(reader.GetValue(i).ToString());
+                i++;
             }
+            reader.Close();
+            
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Conexão Falhou.");
+            Console.WriteLine(ex.Message);
+            Console.ReadKey();
+        }
+        
+        //if (File.Exists(Ficheiro))
+        //{
+        //    string[] linhas = File.ReadAllLines(Ficheiro);
+        //    foreach (string linha in linhas)
+        //    {
+        //        string[] partes = linha.Split('|');
+        //        Aluno aluno = new Aluno();
+        //        aluno.nome = partes[0];
+        //        int c = 0;
+        //        for (int i = 0; i < 1; i++)
+        //        {
+        //            aluno.nome = partes[i + 1 + c];
+        //            aluno.cpf = partes[i + 2 + c];
+        //            aluno.telefone = partes[i + 3 + c];
+        //            aluno.codigo = int.Parse(partes[i + 4 + c]);
+        //            aluno.estudantes.Add(aluno);
+        //            c++;
+        //        }
+        //        alunos.Add(aluno);
+        //    }
+        //}
     }
     static void Escolher()
     {
@@ -83,6 +113,8 @@ partial class Program
             Console.WriteLine("|----------------------------------------------------|");
             Console.WriteLine("|5- Cadastrar Turma \t\t                     |");
             Console.WriteLine("|----------------------------------------------------|");
+            Console.WriteLine("|6- Cadastrar Matéria \t\t                     |");
+            Console.WriteLine("|----------------------------------------------------|");
             Console.WriteLine("|0- Sair\t\t\t\t\t     |");
             Console.WriteLine("|----------------------------------------------------|");
 
@@ -101,15 +133,15 @@ partial class Program
                     Consultar();
                     break;
                 case "4":
-                    Listar();
+                    CarregarArquivosAlunos();
+                    
                     break;
                 case "5":
                     InserirTurma();
                     break;
-                //case "6":
-                //    Conn conn = new Conn();
-                //    conn.teste();
-                //    break;
+                case "6":
+                    InserirMateria();
+                    break;
                 case "0":
                     Fechar();
                     break;
